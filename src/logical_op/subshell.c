@@ -112,8 +112,3 @@ void	sub_fork(t_shell *sub_shell, char *toks_i, t_shell *shell,
 		free_tab(sub_commands);
 	}
 }
-
-// (cat) ||  echo $?
-// avec ctrl + z et ctrl + backslah print pas le bon
-
-// ((ls) && echo)

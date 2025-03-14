@@ -95,9 +95,18 @@ void	execute_tokens_loop(t_shell *shell, char **toks)
 	exec_next = 1;
 	while (toks[i])
 	{
-		if (skip_pipe_or_empty_cmd(shell, toks, &i))
-			continue ;
-		process_token(shell, toks, &i, &exec_next);
+		if (exec_next)
+		{
+			if (skip_pipe_or_empty_cmd(shell, toks, &i))
+				continue ;
+			process_token(shell, toks, &i, &exec_next);
+		}
+		else
+		{
+			if (toks[i] && (!ft_strcmp(toks[i], "&&")
+					|| !ft_strcmp(toks[i], "||")))
+				process_token(shell, toks, &i, &exec_next);
+		}
 		i++;
 	}
 }
